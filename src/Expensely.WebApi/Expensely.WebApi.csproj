@@ -7,4 +7,8 @@
 
   <Import Project="..\..\CodeAnalysis.targets" />
 
+  <ItemGroup>
+    <ProjectReference Include="..\Expensely.Infrastructure.Persistence\Expensely.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>
