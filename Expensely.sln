@@ -21,11 +21,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{06607D3F-A80E-4B64-9B3C-1F6A75C4B662}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expensely.WebApi", "src\Expensely.WebApi\Expensely.WebApi.csproj", "{C7890DF6-896D-499C-845A-811D5F4DE47B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expensely.WebApi", "src\Expensely.WebApi\Expensely.WebApi.csproj", "{C7890DF6-896D-499C-845A-811D5F4DE47B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expensely.Application", "src\Expensely.Application\Expensely.Application.csproj", "{AB174A06-3E52-4FEE-B171-A18AE2E7785B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expensely.Application", "src\Expensely.Application\Expensely.Application.csproj", "{AB174A06-3E52-4FEE-B171-A18AE2E7785B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expensely.Infrastructure.Persistence", "src\Expensely.Infrastructure.Persistence\Expensely.Infrastructure.Persistence.csproj", "{F0522502-0CD6-4AAC-AD78-ACC5A2F658AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expensely.Infrastructure.Persistence", "src\Expensely.Infrastructure.Persistence\Expensely.Infrastructure.Persistence.csproj", "{F0522502-0CD6-4AAC-AD78-ACC5A2F658AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4FBAF556-646C-4BB1-A815-BEF56083DDB4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
