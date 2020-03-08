@@ -1,6 +1,11 @@
 ﻿using System;
-using Expensely.Application.Documents;
-using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Expensely.Application.Interfaces;
+using Expensely.Infrastructure.Persistence.Events;
+using Expensely.Infrastructure.Persistence.Events.OnAfterConversionToEntity;
+using Expensely.Infrastructure.Persistence.Events.OnBeforeStore;
 using Raven.Client.Documents;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
@@ -11,15 +16,15 @@ namespace Expensely.Infrastructure.Persistence
     {
         private readonly DocumentStore _documentStore;
 
-        public DocumentStoreProvider(IOptions<RavenDbSettings> options)
+        public DocumentStoreProvider(RavenDbSettings settings)
         {
-            RavenDbSettings ravenDbSettings = options.Value;
-
             _documentStore = new DocumentStore
             {
-                Urls = ravenDbSettings.Urls,
-                Database = ravenDbSettings.Database
+                Urls = settings.Urls,
+                Database = settings.Database
             };
+
+            RegisterEvents();
 
             _documentStore.Initialize();
 
@@ -33,6 +38,57 @@ namespace Expensely.Infrastructure.Persistence
         public void Dispose()
         {
             _documentStore?.Dispose();
+        }
+
+        private static IEnumerable<T> GetAllImplementationsOf<T>(Assembly assembly)
+            where T : class
+        {
+            Type typeOfInterface = typeof(T);
+
+            IEnumerable<T> interfaceImplementations =
+                from t in assembly.GetTypes()
+                where typeOfInterface.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract
+                select Activator.CreateInstance(t) as T;
+
+            return interfaceImplementations;
+        }
+
+        private void RegisterEvents()
+        {
+            Type callingType = GetType();
+
+            var assembly = Assembly.GetAssembly(callingType);
+
+            if (assembly is null)
+            {
+                throw new InvalidOperationException($"No assembly was found for {callingType.Name}.");
+            }
+
+            RegisterOnBeforeStoreEvents(assembly);
+
+            RegisterOnAfterConversionToEntityEvents(assembly);
+        }
+
+        private void RegisterOnBeforeStoreEvents(Assembly assembly)
+        {
+            IEnumerable<IOnBeforeStoreEvent> onBeforeStoreEvents =
+                GetAllImplementationsOf<IOnBeforeStoreEvent>(assembly);
+
+            foreach (IOnBeforeStoreEvent onBeforeStoreEvent in onBeforeStoreEvents)
+            {
+                _documentStore.OnBeforeStore += onBeforeStoreEvent.Handle;
+            }
+        }
+
+        private void RegisterOnAfterConversionToEntityEvents(Assembly assembly)
+        {
+            IEnumerable<IOnAfterConversionToEntityEvent> onAfterConversionToEntityEvents =
+                GetAllImplementationsOf<IOnAfterConversionToEntityEvent>(assembly);
+
+            foreach (IOnAfterConversionToEntityEvent onAfterConversionToEntityEvent in onAfterConversionToEntityEvents)
+            {
+                _documentStore.OnAfterConversionToEntity += onAfterConversionToEntityEvent.Handle;
+            }
         }
 
         /// <summary>

@@ -1,3 +1,4 @@
+using Expensely.Application;
 using Expensely.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +22,8 @@ namespace Expensely.WebApi
             services.AddControllers();
 
             services.AddPersistence(Configuration);
+
+            services.AddApplication();
         }
 
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -5,7 +5,7 @@ namespace Expensely.Infrastructure.Persistence
     /// <summary>
     /// Represents the RavenDb settings.
     /// </summary>
-    internal sealed class RavenDbSettings
+    public sealed class RavenDbSettings
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RavenDbSettings"/> class.
@@ -19,11 +19,11 @@ namespace Expensely.Infrastructure.Persistence
         /// <summary>
         /// Gets or sets the url.
         /// </summary>
-        internal string[] Urls { get; set; }
+        public string[] Urls { get; set; }
 
         /// <summary>
         /// Gets or sets the database name.
         /// </summary>
-        internal string Database { get; set; }
+        public string Database { get; set; }
     }
 }
