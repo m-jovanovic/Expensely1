@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Expensely.Application.Models.Expense;
 using Expensely.Application.Queries.Expenses.GetExpenses;
-using Expensely.Domain.Entities;
 using Expensely.WebApi.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expensely.WebApi.ExpenseEndpoints
 {
-    public class GetExpensesEndpoint : AsyncEndpoint<Request, IEnumerable<Expense>>
+    [Route("api/expenses")]
+    public class GetExpensesEndpoint : AsyncEndpoint<GetExpensesQuery, IEnumerable<ExpenseDto>>
     {
         private readonly IMediator _mediator;
 
@@ -17,14 +18,10 @@ namespace Expensely.WebApi.ExpenseEndpoints
             _mediator = mediator;
         }
 
-        [Route("api/expenses")]
-        public override async Task<ActionResult<IEnumerable<Expense>>> HandleAsync([FromQuery]Request request)
+        [HttpGet]
+        public override async Task<ActionResult<IEnumerable<ExpenseDto>>> HandleAsync([FromQuery]GetExpensesQuery request)
         {
-            return Ok(await _mediator.Send(new GetExpensesQuery()));
+            return Ok(await _mediator.Send(request));
         }
-    }
-
-    public class Request
-    {
     }
 }
