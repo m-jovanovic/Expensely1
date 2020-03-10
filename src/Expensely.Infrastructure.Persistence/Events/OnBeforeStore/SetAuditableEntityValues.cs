@@ -14,11 +14,27 @@ namespace Expensely.Infrastructure.Persistence.Events.OnBeforeStore
                 return;
             }
 
-            PropertyInfo? propertyInfo = auditableEntity.GetType().GetProperty(nameof(IAuditableEntity.CreatedOnUtc));
+            PropertyInfo? createdOnUtcPropertyInfo =
+                auditableEntity.GetType().GetProperty(nameof(IAuditableEntity.CreatedOnUtc))!;
 
-            propertyInfo?.SetValue(auditableEntity, DateTime.UtcNow);
+            if (createdOnUtcPropertyInfo is null)
+            {
+                return;
+            }
 
-            // TODO: Determine when to set modified on date.
+            var value = (DateTime)createdOnUtcPropertyInfo.GetValue(auditableEntity)!;
+
+            if (value == default)
+            {
+                createdOnUtcPropertyInfo.SetValue(auditableEntity, DateTime.UtcNow);
+            }
+            else
+            {
+                PropertyInfo? modifiedOnUtcPropertyInfo =
+                    auditableEntity.GetType().GetProperty(nameof(IAuditableEntity.ModifiedOnUtc));
+
+                modifiedOnUtcPropertyInfo?.SetValue(auditableEntity, DateTime.UtcNow);
+            }
         }
     }
 }

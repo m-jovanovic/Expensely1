@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Expensely.Application.Extensions;
 using Expensely.Application.Models.Expenses;
 using Expensely.Domain.Entities;
 using MediatR;
@@ -23,6 +24,7 @@ namespace Expensely.Application.Queries.Expenses.GetExpenses
         {
             var expenses = await _session
                 .Query<Expense>()
+                .NoTracking()
                 .Select(x => new
                 {
                     x.Id,

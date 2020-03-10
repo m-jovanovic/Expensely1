@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Expensely.WebApi.ExpenseEndpoints
 {
+    [Route("api/expenses")]
     public class CreateExpenseEndpoint : AsyncEndpoint<CreateExpenseCommand, bool>
     {
         private readonly IMediator _mediator;
@@ -16,7 +17,6 @@ namespace Expensely.WebApi.ExpenseEndpoints
         }
 
         [HttpPost]
-        [Route("api/expenses")]
         public override async Task<ActionResult<bool>> HandleAsync([FromBody]CreateExpenseCommand request)
         {
             return Ok(await _mediator.Send(request));

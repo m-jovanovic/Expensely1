@@ -12,7 +12,7 @@ namespace Expensely.Domain.Entities
             UserId = userId;
             Amount = amount;
             Currency = currency;
-            _occurredOnUtc = occurredOnUtc;
+            OccurredOnUtc = occurredOnUtc;
         }
 
         public Guid UserId { get; }
@@ -27,9 +27,11 @@ namespace Expensely.Domain.Entities
             private set => _occurredOnUtc = value;
         }
 
+        public bool Cancelled { get; private set; }
+
         public DateTime CreatedOnUtc { get; private set; }
 
-        public DateTime? ModifiedOnUtc { get; }
+        public DateTime? ModifiedOnUtc { get; private set; }
 
         public void ChangeOccurrenceDate(DateTime occurrenceDate)
         {
@@ -44,6 +46,17 @@ namespace Expensely.Domain.Entities
             }
 
             OccurredOnUtc = occurrenceDate;
+        }
+
+        public void Cancel()
+        {
+            if (Cancelled)
+            {
+                // TODO: Throw?
+                return;
+            }
+
+            Cancelled = true;
         }
     }
 }

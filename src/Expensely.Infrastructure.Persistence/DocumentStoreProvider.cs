@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Expensely.Application.Interfaces;
-using Expensely.Infrastructure.Persistence.Events;
 using Expensely.Infrastructure.Persistence.Events.OnAfterConversionToEntity;
 using Expensely.Infrastructure.Persistence.Events.OnBeforeStore;
 using Raven.Client.Documents;
