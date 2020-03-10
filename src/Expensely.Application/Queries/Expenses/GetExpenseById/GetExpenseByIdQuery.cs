@@ -1,4 +1,4 @@
-﻿using Expensely.Application.Models.Expense;
+﻿using Expensely.Application.Models.Expenses;
 using MediatR;
 
 namespace Expensely.Application.Queries.Expenses.GetExpenseById

@@ -5,4 +5,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <Import Project="..\..\CodeAnalysis.targets" />
+
+  <ItemGroup>
+    <ProjectReference Include="..\Expensely.Domain\Expensely.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Expensely.Application.Models.Expense;
+using Expensely.Application.Models.Expenses;
 using MediatR;
 
 namespace Expensely.Application.Queries.Expenses.GetExpenses

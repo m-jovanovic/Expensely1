@@ -1,10 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Expensely.Application.Models.Expense;
+using Expensely.Application.Models.Expenses;
 using Expensely.Domain.Entities;
 using MediatR;
-using Raven.Client.Documents;
-using Raven.Client.Documents.Linq;
 using Raven.Client.Documents.Session;
 
 namespace Expensely.Application.Queries.Expenses.GetExpenseById
@@ -22,13 +20,7 @@ namespace Expensely.Application.Queries.Expenses.GetExpenseById
         {
             Expense expense = await _session.LoadAsync<Expense>(request.Id, cancellationToken);
 
-            var expenseDto = new ExpenseDto
-            {
-                Id = expense.Id,
-                Amount = expense.Amount,
-                Currency = expense.Currency,
-                OccurredOnUtc = expense.OccurredOnUtc
-            };
+            ExpenseDto expenseDto = expense;
 
             return expenseDto;
         }

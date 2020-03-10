@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Expensely.Application.Models.Expense;
+using Expensely.Application.Models.Expenses;
 using Expensely.Application.Queries.Expenses.GetExpenseById;
 using Expensely.WebApi.Infrastructure;
 using MediatR;
