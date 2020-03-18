@@ -9,13 +9,13 @@ namespace Expensely.Domain.Entities
         public Expense(Guid id, Guid userId, decimal amount, string currency, DateTime occurredOnUtc)
             : base(id.ToString())
         {
-            UserId = userId;
+            UserId = userId.ToString();
             Amount = amount;
             Currency = currency;
             OccurredOnUtc = occurredOnUtc;
         }
 
-        public Guid UserId { get; }
+        public string UserId { get; }
 
         public decimal Amount { get; }
 

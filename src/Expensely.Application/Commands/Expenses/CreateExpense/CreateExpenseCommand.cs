@@ -5,14 +5,20 @@ namespace Expensely.Application.Commands.Expenses.CreateExpense
 {
     public class CreateExpenseCommand : ICommand<bool>
     {
-        public CreateExpenseCommand() => Currency = string.Empty;
+        public CreateExpenseCommand(Guid userId, decimal amount, string currency, DateTime occurredOn)
+        {
+            UserId = userId;
+            Amount = amount;
+            Currency = currency;
+            OccurredOn = occurredOn;
+        }
 
-        public Guid UserId { get; set; }
+        public Guid UserId { get; }
 
-        public decimal Amount { get; set; }
+        public decimal Amount { get; }
 
-        public string Currency { get; set; }
+        public string Currency { get; }
 
-        public DateTime OccurredOn { get; set; }
+        public DateTime OccurredOn { get; }
     }
 }

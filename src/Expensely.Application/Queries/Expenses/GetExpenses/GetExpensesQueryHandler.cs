@@ -25,6 +25,7 @@ namespace Expensely.Application.Queries.Expenses.GetExpenses
             var expenses = await _session
                 .Query<Expense>()
                 .NoTracking()
+                .Where(x => x.UserId == request.UserId && !x.Cancelled)
                 .Select(x => new
                 {
                     x.Id,

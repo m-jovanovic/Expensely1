@@ -1,25 +1,19 @@
 ﻿using System.Threading.Tasks;
 using Expensely.Application.Commands.Expenses.CreateExpense;
+using Expensely.Contracts;
 using Expensely.WebApi.Infrastructure;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expensely.WebApi.ExpenseEndpoints
 {
-    [Route("api/expenses")]
-    public class CreateExpenseEndpoint : AsyncEndpoint<CreateExpenseCommand, bool>
+    public class CreateExpenseEndpoint : AsyncEndpoint<CreateExpenseRequestDto, bool>
     {
-        private readonly IMediator _mediator;
-
-        public CreateExpenseEndpoint(IMediator mediator)
+        [HttpPost("expenses")]
+        public override async Task<ActionResult<bool>> HandleAsync([FromBody]CreateExpenseRequestDto request)
         {
-            _mediator = mediator;
-        }
+            var command = new CreateExpenseCommand(request.UserId, request.Amount, request.Currency, request.OccurredOn);
 
-        [HttpPost]
-        public override async Task<ActionResult<bool>> HandleAsync([FromBody]CreateExpenseCommand request)
-        {
-            return Ok(await _mediator.Send(request));
+            return Ok(await Mediator.Send(command));
         }
     }
 }
