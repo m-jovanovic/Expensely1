@@ -5,13 +5,13 @@ using MediatR;
 
 namespace Expensely.Application.Queries.Expenses.GetExpenses
 {
-    public class GetExpensesQuery : IRequest<IEnumerable<ExpenseDto>>
+    public class GetExpensesQuery : IRequest<IReadOnlyList<ExpenseDto>>
     {
-        public GetExpensesQuery(string userId)
+        public GetExpensesQuery(Guid userId)
         {
             UserId = userId;
         }
 
-        public string UserId { get; }
+        public Guid UserId { get; }
     }
 }

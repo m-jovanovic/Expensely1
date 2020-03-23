@@ -1,15 +1,16 @@
-﻿using Expensely.Application.Models.Expenses;
+﻿using System;
+using Expensely.Application.Models.Expenses;
 using MediatR;
 
 namespace Expensely.Application.Queries.Expenses.GetExpenseById
 {
-    public class GetExpenseByIdQuery : IRequest<ExpenseDto>
+    public class GetExpenseByIdQuery : IRequest<ExpenseDto?>
     {
-        public GetExpenseByIdQuery(string id)
+        public GetExpenseByIdQuery(Guid id)
         {
             Id = id;
         }
 
-        public string Id { get; }
+        public Guid Id { get; }
     }
 }

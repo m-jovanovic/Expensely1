@@ -1,4 +1,5 @@
 ﻿using System;
+using Expensely.Domain.ValueObjects;
 
 namespace Expensely.Domain.Entities
 {
@@ -6,20 +7,17 @@ namespace Expensely.Domain.Entities
     {
         private DateTime _occurredOnUtc;
 
-        public Expense(Guid id, Guid userId, decimal amount, string currency, DateTime occurredOnUtc)
+        public Expense(Guid id, Guid userId, Money money, DateTime occurredOnUtc)
             : base(id.ToString())
         {
-            UserId = userId.ToString();
-            Amount = amount;
-            Currency = currency;
+            UserId = userId;
+            Money = money;
             OccurredOnUtc = occurredOnUtc;
         }
 
-        public string UserId { get; }
+        public Guid UserId { get; }
 
-        public decimal Amount { get; }
-
-        public string Currency { get; }
+        public Money Money { get; private set; }
 
         public DateTime OccurredOnUtc
         {
@@ -33,19 +31,11 @@ namespace Expensely.Domain.Entities
 
         public DateTime? ModifiedOnUtc { get; private set; }
 
-        public void ChangeOccurrenceDate(DateTime occurrenceDate)
+        public void Update(Money money, DateTime occurredOnUtc)
         {
-            if (OccurredOnUtc == occurrenceDate)
-            {
-                return;
-            }
+            Money = money;
 
-            if (occurrenceDate.Kind != DateTimeKind.Utc)
-            {
-                occurrenceDate = occurrenceDate.ToUniversalTime();
-            }
-
-            OccurredOnUtc = occurrenceDate;
+            OccurredOnUtc = occurredOnUtc;
         }
 
         public void Cancel()

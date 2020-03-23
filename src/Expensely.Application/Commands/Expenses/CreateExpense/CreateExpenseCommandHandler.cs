@@ -2,12 +2,13 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Expensely.Domain.Entities;
+using Expensely.Domain.ValueObjects;
 using MediatR;
 using Raven.Client.Documents.Session;
 
 namespace Expensely.Application.Commands.Expenses.CreateExpense
 {
-    public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, bool>
+    public sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, bool>
     {
         private readonly IAsyncDocumentSession _session;
 
@@ -15,12 +16,20 @@ namespace Expensely.Application.Commands.Expenses.CreateExpense
 
         public async Task<bool> Handle(CreateExpenseCommand request, CancellationToken cancellationToken)
         {
+            var currency = Currency.FromId(request.CurrencyId);
+
+            if (currency is null)
+            {
+                return false;
+            }
+
+            var money = new Money(request.Amount, currency);
+
             var expense = new Expense(
                 Guid.NewGuid(),
                 request.UserId,
-                request.Amount,
-                request.Currency,
-                request.OccurredOn);
+                money,
+                request.OccurredOn.ToUniversalTime());
 
             await _session.StoreAsync(expense, cancellationToken);
 

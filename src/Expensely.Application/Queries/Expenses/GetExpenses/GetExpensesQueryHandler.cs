@@ -11,7 +11,7 @@ using Raven.Client.Documents.Session;
 
 namespace Expensely.Application.Queries.Expenses.GetExpenses
 {
-    public class GetExpensesQueryHandler : IRequestHandler<GetExpensesQuery, IEnumerable<ExpenseDto>>
+    public class GetExpensesQueryHandler : IRequestHandler<GetExpensesQuery, IReadOnlyList<ExpenseDto>>
     {
         private readonly IAsyncDocumentSession _session;
 
@@ -20,23 +20,20 @@ namespace Expensely.Application.Queries.Expenses.GetExpenses
             _session = session;
         }
 
-        public async Task<IEnumerable<ExpenseDto>> Handle(GetExpensesQuery request, CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<ExpenseDto>> Handle(GetExpensesQuery request, CancellationToken cancellationToken)
         {
-            var expenses = await _session
+            List<ExpenseDto> expenseDtos = await _session
                 .Query<Expense>()
                 .NoTracking()
                 .Where(x => x.UserId == request.UserId && !x.Cancelled)
-                .Select(x => new
+                .Select(x => new ExpenseDto
                 {
-                    x.Id,
-                    x.Amount,
-                    x.Currency,
-                    x.OccurredOnUtc
+                    Id = x.Id,
+                    Amount = x.Money.Amount,
+                    Currency = x.Money.Currency.Symbol,
+                    OccurredOnUtc = x.OccurredOnUtc
                 })
                 .ToListAsync(cancellationToken);
-
-            IEnumerable<ExpenseDto> expenseDtos = expenses
-                .Select(x => new ExpenseDto(x.Id, x.Amount, x.Currency, x.OccurredOnUtc));
 
             return expenseDtos;
         }

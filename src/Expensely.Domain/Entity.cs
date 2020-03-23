@@ -57,17 +57,17 @@ namespace Expensely.Domain
                 return false;
             }
 
-            if (!(obj is Entity other))
-            {
-                return false;
-            }
-
             if (ReferenceEquals(this, obj))
             {
                 return true;
             }
 
             if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            if (!(obj is Entity other))
             {
                 return false;
             }

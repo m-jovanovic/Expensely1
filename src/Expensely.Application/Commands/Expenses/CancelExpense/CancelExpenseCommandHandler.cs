@@ -6,7 +6,7 @@ using Raven.Client.Documents.Session;
 
 namespace Expensely.Application.Commands.Expenses.CancelExpense
 {
-    public class CancelExpenseCommandHandler : IRequestHandler<CancelExpenseCommand, bool>
+    public sealed class CancelExpenseCommandHandler : IRequestHandler<CancelExpenseCommand, bool>
     {
         private readonly IAsyncDocumentSession _session;
 
@@ -17,7 +17,12 @@ namespace Expensely.Application.Commands.Expenses.CancelExpense
 
         public async Task<bool> Handle(CancelExpenseCommand request, CancellationToken cancellationToken)
         {
-            Expense expense = await _session.LoadAsync<Expense>(request.Id, cancellationToken);
+            Expense? expense = await _session.LoadAsync<Expense>(request.Id, cancellationToken);
+
+            if (expense is null)
+            {
+                return false;
+            }
 
             expense.Cancel();
 

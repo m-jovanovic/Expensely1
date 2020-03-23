@@ -1,27 +1,21 @@
 ﻿using System;
-using Expensely.Domain.Entities;
 
 namespace Expensely.Application.Models.Expenses
 {
     public class ExpenseDto
     {
-        public ExpenseDto(string id, decimal amount, string currency, DateTime occurredOnUtc)
+        public ExpenseDto()
         {
-            Id = id;
-            Amount = amount;
-            Currency = currency;
-            OccurredOnUtc = occurredOnUtc;
+            Id = string.Empty;
+            Currency = string.Empty;
         }
 
-        public string Id { get; }
+        public string Id { get; set; }
 
-        public decimal Amount { get; }
+        public decimal Amount { get; set; }
 
-        public string Currency { get; }
+        public string Currency { get; set; }
 
-        public DateTime OccurredOnUtc { get; }
-
-        public static implicit operator ExpenseDto(Expense expense)
-            => new ExpenseDto(expense.Id, expense.Amount, expense.Currency, expense.OccurredOnUtc);
+        public DateTime OccurredOnUtc { get; set; }
     }
 }

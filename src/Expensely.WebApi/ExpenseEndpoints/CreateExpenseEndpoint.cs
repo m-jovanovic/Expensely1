@@ -11,7 +11,7 @@ namespace Expensely.WebApi.ExpenseEndpoints
         [HttpPost("expenses")]
         public override async Task<ActionResult<bool>> HandleAsync([FromBody]CreateExpenseRequestDto request)
         {
-            var command = new CreateExpenseCommand(request.UserId, request.Amount, request.Currency, request.OccurredOn);
+            var command = new CreateExpenseCommand(request.UserId, request.Amount, request.CurrencyId, request.OccurredOn);
 
             return Ok(await Mediator.Send(command));
         }
