@@ -8,7 +8,7 @@ using MediatR;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
 
-namespace Expensely.Application.Queries.Expense.GetExpenses
+namespace Expensely.Application.Queries.Expenses.GetExpenses
 {
     public class GetExpensesQueryHandler : IRequestHandler<GetExpensesQuery, IReadOnlyList<ExpenseDto>>
     {

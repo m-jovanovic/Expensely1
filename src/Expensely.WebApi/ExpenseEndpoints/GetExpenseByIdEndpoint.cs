@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Expensely.Application.Queries.Expense.GetExpenseById;
+using Expensely.Application.Queries.Expenses.GetExpenseById;
 using Expensely.Contracts.Expense;
 using Expensely.WebApi.Infrastructure;
 using Microsoft.AspNetCore.Mvc;

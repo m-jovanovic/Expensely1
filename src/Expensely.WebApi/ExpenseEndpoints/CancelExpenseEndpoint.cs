@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Expensely.Application.Commands.Expense.CancelExpense;
+using Expensely.Application.Commands.Expenses.CancelExpense;
 using Expensely.WebApi.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

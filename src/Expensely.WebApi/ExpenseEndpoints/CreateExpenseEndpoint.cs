@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Expensely.Application.Commands.Expense.CreateExpense;
+using Expensely.Application.Commands.Expenses.CreateExpense;
 using Expensely.Contracts;
 using Expensely.Contracts.Expense;
 using Expensely.WebApi.Infrastructure;

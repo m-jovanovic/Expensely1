@@ -2,7 +2,7 @@
 using Expensely.Application.Interfaces;
 using Expensely.Contracts.Expense;
 
-namespace Expensely.Application.Queries.Expense.GetExpenseById
+namespace Expensely.Application.Queries.Expenses.GetExpenseById
 {
     public class GetExpenseByIdQuery : IQuery<ExpenseDto?>
     {

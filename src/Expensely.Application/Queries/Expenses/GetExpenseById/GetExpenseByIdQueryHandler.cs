@@ -1,10 +1,11 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using Expensely.Contracts.Expense;
+using Expensely.Domain.Entities;
 using MediatR;
 using Raven.Client.Documents.Session;
 
-namespace Expensely.Application.Queries.Expense.GetExpenseById
+namespace Expensely.Application.Queries.Expenses.GetExpenseById
 {
     public class GetExpenseByIdQueryHandler : IRequestHandler<GetExpenseByIdQuery, ExpenseDto?>
     {
@@ -17,7 +18,7 @@ namespace Expensely.Application.Queries.Expense.GetExpenseById
 
         public async Task<ExpenseDto?> Handle(GetExpenseByIdQuery request, CancellationToken cancellationToken)
         {
-            Domain.Entities.Expense? expense = await _session.LoadAsync<Domain.Entities.Expense>(request.Id.ToString(), cancellationToken);
+            Expense? expense = await _session.LoadAsync<Expense>(request.Id.ToString(), cancellationToken);
 
             if (expense is null)
             {

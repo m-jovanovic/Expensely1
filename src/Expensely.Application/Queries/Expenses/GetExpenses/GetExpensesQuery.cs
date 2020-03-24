@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Expensely.Application.Interfaces;
 using Expensely.Contracts.Expense;
 
-namespace Expensely.Application.Queries.Expense.GetExpenses
+namespace Expensely.Application.Queries.Expenses.GetExpenses
 {
     public class GetExpensesQuery : IQuery<IReadOnlyList<ExpenseDto>>
     {
