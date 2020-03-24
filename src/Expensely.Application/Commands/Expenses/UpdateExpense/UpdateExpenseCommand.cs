@@ -1,9 +1,10 @@
 ﻿using System;
 using Expensely.Application.Interfaces;
+using Expensely.Domain;
 
 namespace Expensely.Application.Commands.Expenses.UpdateExpense
 {
-    public sealed class UpdateExpenseCommand : ICommand<bool>
+    public sealed class UpdateExpenseCommand : ICommand<Result>
     {
         public UpdateExpenseCommand(Guid expenseId, decimal amount, int currencyId, DateTime occurredOn)
         {

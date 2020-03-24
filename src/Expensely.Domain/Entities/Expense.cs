@@ -1,4 +1,5 @@
 ﻿using System;
+using Expensely.Domain.Exceptions;
 using Expensely.Domain.ValueObjects;
 
 namespace Expensely.Domain.Entities
@@ -42,8 +43,7 @@ namespace Expensely.Domain.Entities
         {
             if (Cancelled)
             {
-                // TODO: Throw?
-                return;
+                throw new DomainException("The expense has already been cancelled.");
             }
 
             Cancelled = true;

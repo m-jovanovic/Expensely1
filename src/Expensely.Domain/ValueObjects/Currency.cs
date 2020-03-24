@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Expensely.Domain.Entities
+namespace Expensely.Domain.ValueObjects
 {
     public sealed class Currency : ValueObject
     {
         public static readonly Currency Usd = new Currency(1, "$");
-
         public static readonly Currency Eur = new Currency(2, "€");
-
         public static readonly Currency Rsd = new Currency(3, "din.");
 
         private static readonly IReadOnlyList<Currency> AllCurrencies = new List<Currency>

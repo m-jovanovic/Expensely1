@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Expensely.Domain.Entities;
 
 namespace Expensely.Domain.ValueObjects
 {

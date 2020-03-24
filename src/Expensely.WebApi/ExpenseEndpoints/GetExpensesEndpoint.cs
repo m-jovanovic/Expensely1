@@ -13,7 +13,9 @@ namespace Expensely.WebApi.ExpenseEndpoints
         [HttpGet("expenses")]
         public override async Task<ActionResult<IReadOnlyList<ExpenseDto>>> HandleAsync(Guid userId)
         {
-            return Ok(await Mediator.Send(new GetExpensesQuery(userId)));
+            IReadOnlyList<ExpenseDto> readOnlyList = await Mediator.Send(new GetExpensesQuery(userId));
+
+            return Ok(readOnlyList);
         }
     }
 }

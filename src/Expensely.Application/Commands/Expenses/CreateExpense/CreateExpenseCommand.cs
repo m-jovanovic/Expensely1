@@ -1,9 +1,10 @@
 ﻿using System;
 using Expensely.Application.Interfaces;
+using Expensely.Domain;
 
 namespace Expensely.Application.Commands.Expenses.CreateExpense
 {
-    public sealed class CreateExpenseCommand : ICommand<bool>
+    public sealed class CreateExpenseCommand : ICommand<Result>
     {
         public CreateExpenseCommand(Guid userId, decimal amount, int currencyId, DateTime occurredOn)
         {
