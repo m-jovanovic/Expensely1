@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Expensely.Application.Models.Expenses;
-using Expensely.Application.Queries.Expenses.GetExpenses;
+using Expensely.Application.Queries.Expense.GetExpenses;
+using Expensely.Contracts.Expense;
 using Expensely.WebApi.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

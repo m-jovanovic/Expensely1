@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Expensely.Domain\Expensely.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Expenses\" />
+  </ItemGroup>
+
 </Project>

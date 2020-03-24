@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Expensely.Contracts
+namespace Expensely.Contracts.Expense
 {
-    public class UpdateExpenseRequestDto
+    public class CreateExpenseRequestDto
     {
-        public Guid ExpenseId { get; set; }
+        public Guid UserId { get; set; }
 
         public decimal Amount { get; set; }
 

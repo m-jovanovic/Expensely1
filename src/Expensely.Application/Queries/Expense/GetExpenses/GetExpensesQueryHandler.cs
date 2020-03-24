@@ -3,13 +3,12 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Expensely.Application.Extensions;
-using Expensely.Application.Models.Expenses;
-using Expensely.Domain.Entities;
+using Expensely.Contracts.Expense;
 using MediatR;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Session;
 
-namespace Expensely.Application.Queries.Expenses.GetExpenses
+namespace Expensely.Application.Queries.Expense.GetExpenses
 {
     public class GetExpensesQueryHandler : IRequestHandler<GetExpensesQuery, IReadOnlyList<ExpenseDto>>
     {
@@ -23,7 +22,7 @@ namespace Expensely.Application.Queries.Expenses.GetExpenses
         public async Task<IReadOnlyList<ExpenseDto>> Handle(GetExpensesQuery request, CancellationToken cancellationToken)
         {
             List<ExpenseDto> expenseDtos = await _session
-                .Query<Expense>()
+                .Query<Domain.Entities.Expense>()
                 .NoTracking()
                 .Where(x => x.UserId == request.UserId && !x.Cancelled)
                 .Select(x => new ExpenseDto

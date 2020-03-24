@@ -32,9 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expensely.Application.Models", "src\Expensely.Application.Models\Expensely.Application.Models.csproj", "{F9498565-C87F-4F82-BD23-89D942019E11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expensely.Contracts", "src\Expensely.Contracts\Expensely.Contracts.csproj", "{1DECED9C-CB32-4F79-AADF-E0A29FF04141}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expensely.Contracts", "src\Expensely.Contracts\Expensely.Contracts.csproj", "{1DECED9C-CB32-4F79-AADF-E0A29FF04141}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,10 +60,6 @@ Global
 		{F0522502-0CD6-4AAC-AD78-ACC5A2F658AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0522502-0CD6-4AAC-AD78-ACC5A2F658AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0522502-0CD6-4AAC-AD78-ACC5A2F658AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9498565-C87F-4F82-BD23-89D942019E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9498565-C87F-4F82-BD23-89D942019E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9498565-C87F-4F82-BD23-89D942019E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9498565-C87F-4F82-BD23-89D942019E11}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1DECED9C-CB32-4F79-AADF-E0A29FF04141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1DECED9C-CB32-4F79-AADF-E0A29FF04141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DECED9C-CB32-4F79-AADF-E0A29FF04141}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -85,7 +79,6 @@ Global
 		{C7890DF6-896D-499C-845A-811D5F4DE47B} = {06607D3F-A80E-4B64-9B3C-1F6A75C4B662}
 		{AB174A06-3E52-4FEE-B171-A18AE2E7785B} = {2024D9FE-61A4-4A19-BFE8-18391AE85BC5}
 		{F0522502-0CD6-4AAC-AD78-ACC5A2F658AA} = {6E53603E-D7DD-492A-9229-5E18C9EB3655}
-		{F9498565-C87F-4F82-BD23-89D942019E11} = {2024D9FE-61A4-4A19-BFE8-18391AE85BC5}
 		{1DECED9C-CB32-4F79-AADF-E0A29FF04141} = {2024D9FE-61A4-4A19-BFE8-18391AE85BC5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

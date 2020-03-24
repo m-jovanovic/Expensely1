@@ -6,7 +6,7 @@ using Expensely.Domain.ValueObjects;
 using MediatR;
 using Raven.Client.Documents.Session;
 
-namespace Expensely.Application.Commands.Expenses.CreateExpense
+namespace Expensely.Application.Commands.Expense.CreateExpense
 {
     public sealed class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand, bool>
     {
@@ -25,7 +25,7 @@ namespace Expensely.Application.Commands.Expenses.CreateExpense
 
             var money = new Money(request.Amount, currency);
 
-            var expense = new Expense(
+            var expense = new Domain.Entities.Expense(
                 Guid.NewGuid(),
                 request.UserId,
                 money,

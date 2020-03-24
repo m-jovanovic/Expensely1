@@ -1,19 +1,19 @@
 ﻿using System;
 using Expensely.Application.Interfaces;
 
-namespace Expensely.Application.Commands.Expenses.UpdateExpense
+namespace Expensely.Application.Commands.Expense.CreateExpense
 {
-    public sealed class UpdateExpenseCommand : ICommand<bool>
+    public sealed class CreateExpenseCommand : ICommand<bool>
     {
-        public UpdateExpenseCommand(Guid expenseId, decimal amount, int currencyId, DateTime occurredOn)
+        public CreateExpenseCommand(Guid userId, decimal amount, int currencyId, DateTime occurredOn)
         {
-            ExpenseId = expenseId;
+            UserId = userId;
             Amount = amount;
             CurrencyId = currencyId;
             OccurredOn = occurredOn;
         }
 
-        public Guid ExpenseId { get; }
+        public Guid UserId { get; }
 
         public decimal Amount { get; }
 

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Expensely.Application.Commands.Expenses.UpdateExpense;
+using Expensely.Application.Commands.Expense.UpdateExpense;
 using Expensely.Contracts;
+using Expensely.Contracts.Expense;
 using Expensely.WebApi.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,7 +5,7 @@ using Expensely.Domain.ValueObjects;
 using MediatR;
 using Raven.Client.Documents.Session;
 
-namespace Expensely.Application.Commands.Expenses.UpdateExpense
+namespace Expensely.Application.Commands.Expense.UpdateExpense
 {
     public sealed class UpdateExpenseCommandHandler : IRequestHandler<UpdateExpenseCommand, bool>
     {
@@ -18,7 +18,7 @@ namespace Expensely.Application.Commands.Expenses.UpdateExpense
 
         public async Task<bool> Handle(UpdateExpenseCommand request, CancellationToken cancellationToken)
         {
-            Expense? expense = await _session.LoadAsync<Expense>(request.ExpenseId.ToString(), cancellationToken);
+            Domain.Entities.Expense? expense = await _session.LoadAsync<Domain.Entities.Expense>(request.ExpenseId.ToString(), cancellationToken);
 
             if (expense is null)
             {

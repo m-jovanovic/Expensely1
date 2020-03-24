@@ -1,6 +1,6 @@
 ﻿using Expensely.Application.Interfaces;
 
-namespace Expensely.Application.Commands.Expenses.CancelExpense
+namespace Expensely.Application.Commands.Expense.CancelExpense
 {
     public sealed class CancelExpenseCommand : ICommand<bool>
     {
